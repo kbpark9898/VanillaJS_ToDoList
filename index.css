@@ -13,3 +13,12 @@ body {
  .clicked {
    color: #7f8c8d;
  } 
+
+ .form,
+ .grettings {
+     display: none;
+ }
+
+ .showing {
+     display: block;
+ }
