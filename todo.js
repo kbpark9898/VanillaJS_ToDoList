@@ -2,8 +2,19 @@ const todoForm = document.querySelector(".js-toDoform"),
 todoInput = todoForm.querySelector("input"),
 todoList = document.querySelector(".js-toDoList");
 
-const toDos =[]
+let toDos =[]
 const todo_key = "toDos";
+function deleteTodo(event){
+    const btn = event.target;
+    const li = btn.parentNode;
+    todoList.removeChild(li)
+    todoInput.innerText='';
+    const cleanToDos = toDos.filter(function(todo){
+        return todo.id !== parseInt(li.id)
+    });
+    toDos = cleanToDos;
+    saveTodoList(toDos)
+}
 function paintTodo(text){
     console.log("called paintTodo")
     const item = document.createElement('li');
@@ -11,6 +22,7 @@ function paintTodo(text){
     const span = document.createElement('span');
     span.innerText=text;
     deleteBtn.innerText='DEL';
+    deleteBtn.addEventListener("click", deleteTodo);
     const todoID = toDos.length+1;
     const todoObj={
         text: text,
