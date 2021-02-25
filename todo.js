@@ -9,9 +9,11 @@ function deleteTodo(event){
     const li = btn.parentNode;
     todoList.removeChild(li)
     todoInput.innerText='';
+    console.log(li)
     const cleanToDos = toDos.filter(function(todo){
         return todo.id !== parseInt(li.id)
     });
+    console.log(cleanToDos);
     toDos = cleanToDos;
     saveTodoList(toDos)
 }
@@ -30,6 +32,7 @@ function paintTodo(text){
     }
     item.appendChild(span);
     item.appendChild(deleteBtn);
+    item.id=todoID
     todoList.appendChild(item);
     toDos.push(todoObj);
     console.log(toDos)
