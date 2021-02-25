@@ -1,10 +1,11 @@
-const todoForm = document.querySelector(".js-todoForm"),
+const todoForm = document.querySelector(".js-toDoform"),
 todoInput = todoForm.querySelector("input"),
-todoList = document.querySelector(".js-todoList");
+todoList = document.querySelector(".js-toDoList");
 
 const toDos =[]
-const todo_key = "todoList";
+const todo_key = "toDos";
 function paintTodo(text){
+    console.log("called paintTodo")
     const item = document.createElement('li');
     const deleteBtn = document.createElement('button');
     const span = document.createElement('span');
@@ -13,13 +14,14 @@ function paintTodo(text){
     const todoID = toDos.length+1;
     const todoObj={
         text: text,
-        id = todoID
+        id : todoID
     }
     item.appendChild(span);
     item.appendChild(deleteBtn);
     todoList.appendChild(item);
     toDos.push(todoObj);
-    saveTodoList(todoObj);
+    console.log(toDos)
+    saveTodoList(toDos);
 }
 
 function handleSubmit(event){
@@ -35,6 +37,7 @@ function loadTodoList(){
     const load = localStorage.getItem(todo_key);
     if(load !== null){
         const parsedTodoList = JSON.parse(load);
+        console.log(parsedTodoList);
         parsedTodoList.forEach(function(todo){
             paintTodo(todo.text);
         })
